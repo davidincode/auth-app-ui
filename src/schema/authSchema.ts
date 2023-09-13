@@ -6,11 +6,11 @@ export const signUpSchema = z.object({
   password: z.string().min(6),
 })
 
-export type SignupData = z.infer<typeof signUpSchema>
+export type SignUpData = z.infer<typeof signUpSchema>
 
 export const signInSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
 })
 
-export type SigninData = z.infer<typeof signInSchema>
+export type SignInData = z.infer<typeof signInSchema>
