@@ -14,14 +14,16 @@ export const userSchema = z.object({
   password: z.string().min(6).optional(),
   photo: z
     .any()
-    .refine((file: File) => file instanceof File, 'Expected a file')
+    .refine(file => file instanceof File, 'Expected a file')
     .refine(
-      (file: File) => file.size <= MAX_FILE_SIZE,
+      file => file.size <= MAX_FILE_SIZE,
       'File size should be less than 5 MB',
     )
     .refine(
-      (file: File) => ACCEPTED_IMAGE_TYPE.includes(file.type),
+      file => ACCEPTED_IMAGE_TYPE.includes(file.type),
       'Only .jpg, .jpeg, .png and .webp image format are supported',
     )
     .optional(),
 })
+
+export type User = z.infer<typeof userSchema>
